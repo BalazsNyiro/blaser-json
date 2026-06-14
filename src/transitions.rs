@@ -1,23 +1,23 @@
 
-pub const START: u8 = 0;    // START is named now
-pub const END: u8 = 1;
+pub const NUM_START: u8 = 0;    // START is named now
+pub const NUM_END: u8 = 1;
 const NUM_NEG: u8 = 2;
-const DIG19: u8 = 3;
-const DIG09: u8 = 4;
-const DOT: u8 = 5;
-const DIG_AFTER_DOT: u8 = 6;
-const ZERO: u8 = 7;
+const NUM_DIG19: u8 = 3;
+const NUM_DIG09: u8 = 4;
+const NUM_DOT: u8 = 5;
+const NUM_DIG_AFTER_DOT: u8 = 6;
+const NUM_ZERO: u8 = 7;
 
 
 pub const NUM_TRANSITIONS: [&[u8]; 8] = [
-    /* START        : 0 */  &[NUM_NEG, DIG19, ZERO],
+    /* START        : 0 */  &[NUM_NEG, NUM_DIG19, NUM_ZERO],
     /* END          : 1 */  &[],
-    /* NUM_NEG      : 2 */  &[ZERO, DIG19],
-    /* DIG19        : 3 */  &[DIG09, DOT, END],
-    /* DIG09        : 4 */  &[DIG09, DOT, END],
-    /* DOT          : 5 */  &[DIG_AFTER_DOT],
-    /* DIG_AFTER_DOT: 6 */  &[DIG_AFTER_DOT, END],
-    /* ZERO         : 7 */  &[DOT, END],
+    /* NUM_NEG      : 2 */  &[NUM_ZERO, NUM_DIG19],
+    /* DIG19        : 3 */  &[NUM_DIG09, NUM_DOT, NUM_END],
+    /* DIG09        : 4 */  &[NUM_DIG09, NUM_DOT, NUM_END],
+    /* DOT          : 5 */  &[NUM_DIG_AFTER_DOT],
+    /* DIG_AFTER_DOT: 6 */  &[NUM_DIG_AFTER_DOT, NUM_END],
+    /* ZERO         : 7 */  &[NUM_DOT, NUM_END],
 ];
 
 // This table won't be updated anymore

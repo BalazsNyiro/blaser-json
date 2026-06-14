@@ -1,11 +1,11 @@
 mod transitions;
-use transitions::{START, END, NUM_TRANSITIONS, NUM_ACCEPTED_CHARS_IN_STATES, NUM_NAMES_OF_STATES};
+use transitions::{NUM_START, NUM_END, NUM_TRANSITIONS, NUM_ACCEPTED_CHARS_IN_STATES, NUM_NAMES_OF_STATES};
 
 fn main() {
     
     // Read chars one-by-one
     let text = "-123.4";
-    let mut transition_state_now = START;
+    let mut transition_state_now = NUM_START;
     let mut transition_jump_counter = 0;
 
     
@@ -18,7 +18,7 @@ fn main() {
                                         &NUM_ACCEPTED_CHARS_IN_STATES,
                                         &NUM_NAMES_OF_STATES,
         );
-        if transition_state_now == END {
+        if transition_state_now == NUM_END {
             break
         } else {
             transition_jump_counter += 1;
@@ -36,7 +36,7 @@ fn state_of_next_char(
 ) -> u8 {
     println!("transition_state_actual: {}, character_maybe_correct: {}", transition_state_actual, character_maybe_correct);
 
-    let mut state_of_next_char = END;
+    let mut state_of_next_char = NUM_END;
 
     // usize is used for array indexing, u8 is not a valid number for indexing.
     for transition_possible in transition_table[transition_state_actual as usize] {
@@ -49,7 +49,7 @@ fn state_of_next_char(
                 break
             }
        }
-       if state_of_next_char != END{ break }  // no more loop if result is detected
+       if state_of_next_char != NUM_END { break }  // no more loop if result is detected
     }
     println!("  state of next char {:?}, {:?}", state_of_next_char, NUM_NAMES_OF_STATES[state_of_next_char as usize]);
     return state_of_next_char;
