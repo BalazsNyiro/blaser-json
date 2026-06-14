@@ -1,0 +1,10 @@
+.idea
+target
+
+
+# macOS
+.DS_Store
+
+# Vim
+*.swp
+*.swo
