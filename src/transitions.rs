@@ -1,6 +1,9 @@
 
-pub const NUM_START: u8 = 0;    // START is named now
-pub const NUM_END: u8 = 1;
+/////// General states in all transitions ////////
+pub const START: u8 = 0;    // START is named now
+pub const END: u8 = 1;
+//////////////////////////////////////////////////
+
 const NUM_NEG: u8 = 2;
 const NUM_DIG19: u8 = 3;
 const NUM_DIG09: u8 = 4;
@@ -13,15 +16,15 @@ pub const NUM_TRANSITIONS: [&[u8]; 8] = [
     /* START        : 0 */  &[NUM_NEG, NUM_DIG19, NUM_ZERO],
     /* END          : 1 */  &[],
     /* NUM_NEG      : 2 */  &[NUM_ZERO, NUM_DIG19],
-    /* DIG19        : 3 */  &[NUM_DIG09, NUM_DOT, NUM_END],
-    /* DIG09        : 4 */  &[NUM_DIG09, NUM_DOT, NUM_END],
+    /* DIG19        : 3 */  &[NUM_DIG09, NUM_DOT, END],
+    /* DIG09        : 4 */  &[NUM_DIG09, NUM_DOT, END],
     /* DOT          : 5 */  &[NUM_DIG_AFTER_DOT],
-    /* DIG_AFTER_DOT: 6 */  &[NUM_DIG_AFTER_DOT, NUM_END],
-    /* ZERO         : 7 */  &[NUM_DOT, NUM_END],
+    /* DIG_AFTER_DOT: 6 */  &[NUM_DIG_AFTER_DOT, END],
+    /* ZERO         : 7 */  &[NUM_DOT, END],
 ];
 
 // This table won't be updated anymore
-pub const NUM_ACCEPTED_CHARS_IN_STATES: [&[char]; 8] = [
+pub const NUM_CHARS_ACCEPTED_IN_STATES: [&[char]; 8] = [
     /* START        : 0 */  &[],  // no accepted char
     /* END          : 1 */  &[],  // no accepted char
     /* NUM_NEG      : 2 */  &['-'],
