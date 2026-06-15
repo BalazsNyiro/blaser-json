@@ -4,12 +4,12 @@ pub const START: u8 = 0;    // START is named now
 pub const END: u8 = 1;
 //////////////////////////////////////////////////
 
-const NUM_NEG: u8 = 2;
-const NUM_DIG19: u8 = 3;
-const NUM_DIG09: u8 = 4;
-const NUM_DOT: u8 = 5;
-const NUM_DIG_AFTER_DOT: u8 = 6;
-const NUM_ZERO: u8 = 7;
+pub const NUM_NEG: u8 = 2;
+pub const NUM_DIG19: u8 = 3;
+pub const NUM_DIG09: u8 = 4;
+pub const NUM_DOT: u8 = 5;
+pub const NUM_DIG_AFTER_DOT: u8 = 6;
+pub const NUM_ZERO: u8 = 7;
 
 
 pub const NUM_TRANSITIONS: [&[u8]; 8] = [
