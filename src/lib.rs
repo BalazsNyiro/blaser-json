@@ -2,13 +2,16 @@
 pub mod transitions;
 
 // pub use ... re-export these constants, to re-use them in external tests
-pub use transitions::{START, END,
+pub use transitions::{START, NO_STATE_JUMP,
                       NUM_NEG, NUM_DIG19, NUM_DIG09,  NUM_DOT,
                       NUM_DIG_AFTER_DOT, NUM_ZERO,
                       NUM_TRANSITIONS, NUM_CHARS_ACCEPTED_IN_STATES, NUM_NAMES_OF_STATES};
 
 /*
     TODO: test/coverage
+
+    Run tests: cargo test
+
 */
 
 pub fn parse_json(text: &str) {
@@ -25,7 +28,7 @@ pub fn parse_json(text: &str) {
             transition_state, char,
             &NUM_TRANSITIONS, &NUM_CHARS_ACCEPTED_IN_STATES, &NUM_NAMES_OF_STATES,
         );
-        if transition_state == END {
+        if transition_state == NO_STATE_JUMP {
             break
         } else {
             transition_jump_counter += 1;
@@ -43,7 +46,7 @@ pub fn state_after_char_reading(
 ) -> u8 {
     println!("transition_state_actual: {}, character next: {}", transition_state_actual, character);
 
-    let mut state_after_char_reading_and_transation_analyse = END;
+    let mut state_after_char_reading_and_transation_analyse = NO_STATE_JUMP;
 
     // usize is used for array indexing, u8 is not a valid number for indexing.
     for transition_possible in transition_table[transition_state_actual as usize] {
@@ -56,7 +59,7 @@ pub fn state_after_char_reading(
                 break
             }
        }
-       if state_after_char_reading_and_transation_analyse != END { break }  // no more loop if result is detected
+       if state_after_char_reading_and_transation_analyse != NO_STATE_JUMP { break }  // no more loop if result is detected
     }
     println!("  state of next char {:?}, {:?}", state_after_char_reading_and_transation_analyse, NUM_NAMES_OF_STATES[state_after_char_reading_and_transation_analyse as usize]);
     return state_after_char_reading_and_transation_analyse;

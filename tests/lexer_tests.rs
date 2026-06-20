@@ -1,4 +1,4 @@
-use blaser_json::{START, END,
+use blaser_json::{START, NO_STATE_JUMP,
                   NUM_NEG, NUM_DIG19, NUM_DIG09,  NUM_DOT,
                   NUM_DIG_AFTER_DOT, NUM_ZERO,
                   NUM_TRANSITIONS, NUM_CHARS_ACCEPTED_IN_STATES, NUM_NAMES_OF_STATES };
