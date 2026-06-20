@@ -11,8 +11,9 @@ pub const NUM_DOT: u8 = 5;
 pub const NUM_DIG_AFTER_DOT: u8 = 6;
 pub const NUM_ZERO: u8 = 7;
 
-
-pub const NUM_TRANSITIONS: [&[u8]; 8] = [
+// The simpler transition table: int/float handle only,
+// without scientific num representation
+pub const NUM_TRANSITIONS__INT_FLOAT: [&[u8]; 8] = [
     /* START        : 0 */  &[NUM_NEG, NUM_DIG19, NUM_ZERO],
     /* NO_STATE_JUMP: 1 */  &[],
     /* NUM_NEG      : 2 */  &[NUM_ZERO, NUM_DIG19],
@@ -24,6 +25,8 @@ pub const NUM_TRANSITIONS: [&[u8]; 8] = [
 ];
 
 // This table won't be updated anymore
+// can handle the int/float only mode + scientific mode too,
+// no need to separate them
 pub const NUM_CHARS_ACCEPTED_IN_STATES: [&[char]; 8] = [
     /* START        : 0 */  &[],  // no accepted char
     /* NO_STATE_JUMP: 1 */  &[],  // no accepted char
@@ -33,10 +36,14 @@ pub const NUM_CHARS_ACCEPTED_IN_STATES: [&[char]; 8] = [
     /* DOT          : 5 */  &['.'],
     /* DIG_AFTER_DOT: 6 */  &['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
     /* ZERO         : 7 */  &['0'],
+
+    ///////////////////// Scientific number representation ////////////////////
 ];
 
 
 // id -> human readable name
+// can handle the int/float only mode + scientific mode too,
+// no need to separate them
 pub const NUM_NAMES_OF_STATES: [&str; 8] = [
     /* START        : 0 */  "START",
     /* NO_STATE_JUMP: 1 */  "NO_STATE_JUMP",
@@ -46,4 +53,6 @@ pub const NUM_NAMES_OF_STATES: [&str; 8] = [
     /* DOT          : 5 */  "DOT",
     /* DIG_AFTER_DOT: 6 */  "DIG_AFTER_DOT",
     /* ZERO         : 7 */  "ZERO",
+
+    ///////////////////// Scientific number representation ////////////////////
 ];

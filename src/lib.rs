@@ -3,9 +3,9 @@ pub mod transitions;
 
 // pub use ... re-export these constants, to re-use them in external tests
 pub use transitions::{START, NO_STATE_JUMP,
-                      NUM_NEG, NUM_DIG19, NUM_DIG09,  NUM_DOT,
+                      NUM_NEG, NUM_DIG19, NUM_DIG09, NUM_DOT,
                       NUM_DIG_AFTER_DOT, NUM_ZERO,
-                      NUM_TRANSITIONS, NUM_CHARS_ACCEPTED_IN_STATES, NUM_NAMES_OF_STATES};
+                      NUM_TRANSITIONS__INT_FLOAT, NUM_CHARS_ACCEPTED_IN_STATES, NUM_NAMES_OF_STATES};
 
 /*
     TODO: test/coverage
@@ -26,7 +26,7 @@ pub fn parse_json(text: &str) {
         println!("id: {}, char: {}", id, char);
         transition_state = state_after_char_reading(
             transition_state, char,
-            &NUM_TRANSITIONS, &NUM_CHARS_ACCEPTED_IN_STATES, &NUM_NAMES_OF_STATES,
+            &NUM_TRANSITIONS__INT_FLOAT, &NUM_CHARS_ACCEPTED_IN_STATES, &NUM_NAMES_OF_STATES,
         );
         if transition_state == NO_STATE_JUMP {
             break
