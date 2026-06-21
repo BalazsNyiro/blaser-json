@@ -18,3 +18,5 @@ pub struct Token {
     end: usize,
     kind: u8,
 }
+
+pub type TokenList = Vec<Token>;

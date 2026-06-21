@@ -9,14 +9,18 @@
 
 // compile transitions.rs like a module
 pub mod tokens;
-pub use tokens::{Token};
+pub use tokens::{Token, TokenList};
 
 pub mod transitions;
+
 // pub use ... re-export these constants, to re-use them in external tests
 pub use transitions::{START,
                       NUM_NEG, NUM_DIG19, NUM_DIG09, NUM_DOT,
                       NUM_DIG_AFTER_DOT, NUM_ZERO,
                       NUM_TRANSITIONS__INT_FLOAT, NUM_CHARS_ACCEPTED_IN_STATES, NUM_NAMES_OF_STATES};
+
+pub mod errors;
+pub use errors::{ErrorList};
 
 pub fn parse_json(text: &str) {
     
@@ -43,9 +47,11 @@ pub fn parse_json(text: &str) {
 }
 
 
-pub fn tokens_detect(text: &str) {
-    let tokens: Vec<Token> = vec![ ];
+pub fn tokens_detect(text: &str) -> (TokenList, ErrorList) {
+    let tokens: TokenList = vec![ ];
+    let errors: ErrorList = vec![ ];
 
+    (tokens, errors) // the last statement is the automatic return value
 }
 
 
