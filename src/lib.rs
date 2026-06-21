@@ -1,18 +1,22 @@
-// compile transitions.rs like a module
-pub mod transitions;
+/*
+    tests run: cargo test
 
+    coverage install: cargo install cargo-llvm-cov
+    coverage run:     cargo llvm-cov --html
+                      cargo llvm
+
+*/
+
+// compile transitions.rs like a module
+pub mod tokens;
+pub use tokens::{Token};
+
+pub mod transitions;
 // pub use ... re-export these constants, to re-use them in external tests
 pub use transitions::{START,
                       NUM_NEG, NUM_DIG19, NUM_DIG09, NUM_DOT,
                       NUM_DIG_AFTER_DOT, NUM_ZERO,
                       NUM_TRANSITIONS__INT_FLOAT, NUM_CHARS_ACCEPTED_IN_STATES, NUM_NAMES_OF_STATES};
-
-/*
-    TODO: test/coverage
-
-    Run tests: cargo test
-
-*/
 
 pub fn parse_json(text: &str) {
     
@@ -37,6 +41,13 @@ pub fn parse_json(text: &str) {
     }
     println!("FINAL STATE: {:?}, transition_jump_counter: {:?}", transition_state, transition_jump_counter);
 }
+
+
+pub fn tokens_detect(text: &str) {
+    let tokens: Vec<Token> = vec![ ];
+
+}
+
 
 pub fn state_after_char_reading(
     transition_state_actual: u8,
@@ -68,6 +79,7 @@ pub fn state_after_char_reading(
         // no more loop if result is detected
     }
     println!("  state of next char {:?}, {:?}", state_after_char_reading_and_transation_analyse, NUM_NAMES_OF_STATES[state_after_char_reading_and_transation_analyse as usize]);
-    return (valid_transaction_jump_happened,
-            state_after_char_reading_and_transation_analyse);
+
+    // the last line is the default return value (no semicolon at the end!)
+    (valid_transaction_jump_happened, state_after_char_reading_and_transation_analyse)
 }
